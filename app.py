@@ -128,14 +128,14 @@ def find_user_by_name(username):
     cursor = conn.cursor()
 
     # VULNERABILITY: SQL injection
-    query = "SELECT * FROM users WHERE username = '" + username + "'"
+    query = "SELECT * FROM users WHERE username = ?"
     logging.debug("Running query: " + query)
 
-    cursor.execute(query)
+    cursor.execute(query, (username,))
     return cursor.fetchall()
 
 
-def find_user_by_id(user_id):
+
     conn = get_db_connection()
     cursor = conn.cursor()
 
